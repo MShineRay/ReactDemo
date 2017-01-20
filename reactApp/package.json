@@ -1,0 +1,18 @@
+{
+  "name": "runoob-react-test",
+  "version": "1.0.0",
+  "description": "菜鸟教程 react 测试",
+  "main": "index.js",
+  "scripts": {
+    "start": "webpack-dev-server --hot"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "react": "^15.4.2",
+    "react-dom": "^15.4.2"
+  },
+  "devDependencies": {
+    "webpack-dev-server": "^1.16.2"
+  }
+}
