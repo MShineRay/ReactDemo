@@ -1,0 +1,26 @@
+{
+  "name": "preject name",
+  "version": "0.0.1",
+  "description": "project desc",
+  "main": "gulpfile.js",
+  "dependencies": {},
+  "devDependencies": {
+    "del": "^3.0.0",
+    "gulp": "^3.9.1",
+    "gulp-changed": "^3.1.0",
+    "gulp-clean-css": "^3.7.0",
+    "gulp-file-include": "^1.1.0",
+    "gulp-minify-css": "^1.2.4",
+    "gulp-sequence": "^0.4.6",
+    "gulp-uglify": "^3.0.0",
+    "gulp-watch": "^4.3.11"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "project keywords"
+  ],
+  "author": "fe.xdf.cn",
+  "license": "ISC"
+}

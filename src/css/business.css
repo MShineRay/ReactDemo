@@ -1,0 +1,29 @@
+/**
+ * 公共业务样式文件
+ * 业务模块样式命名应以页面简称作为前缀(如test.html文件 样式以.test_、#test_开头)
+ */
+
+/** 公共样式 begin */
+
+/** 公共样式 end */
+
+/** test 模块样式 begin */
+.test_xx {
+text-align: center;
+}
+
+#test {
+
+}
+
+/** test 模块样式 end */
+
+/** other 模块样式 begin */
+.other_xx {
+
+}
+
+#other_xx {
+
+}
+/** other 模块样式 end */
