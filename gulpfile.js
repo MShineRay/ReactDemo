@@ -103,15 +103,6 @@ gulp.task('clean_all', function (cb) {
 });
 
 /**
- * 清空 out目录下文件
- */
-gulp.task('clean_all', function (cb) {
-  return del([
-    outDir + '/**/*'
-  ], cb);
-});
-
-/**
  * 清空 out/lib 目录下非压缩js文件
  */
 gulp.task('clean_out_lib_unMinJS', function (cb) {
@@ -379,6 +370,21 @@ gulp.task('default', gulpSequence(
     'watch_indexHtml',
     'watch_html',
     'watch_js_business'
+  ]
+  )
+);
+
+gulp.task('build', gulpSequence(
+  'clean_all',
+  [
+    'copy_css',
+    'copy_images',
+    'copy_lib',
+    'copy_js',
+    'copy_requireJS',
+    'copy_indexHtml',
+    'concat_html_business',
+    'copy_js_business'
   ]
   )
 );
