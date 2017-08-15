@@ -1,6 +1,6 @@
 require(["xdf.reactBase"],
   function (XDFReactBase) {
-   console.log(2222222222)
+   console.log('demo.js')
     var ReactDOM = XDFReactBase.ReactDOM;
     var React = XDFReactBase.React;
 

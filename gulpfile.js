@@ -20,7 +20,6 @@ var gulpReact = require('gulp-react');
 
 var Ver = new Date().getTime();
 var outDir = './out';//默认：输出目录
-
 var FLAG_MIN_JS = true;//开关：是否压缩JS
 var FLAG_MIN_CSS = true;//开关：是否压缩CSS
 var files = {
@@ -84,6 +83,42 @@ gulp.task('clean_all', function (cb) {
   ], cb);
 });
 
+/**
+ * 清空 out/lib 目录下非压缩js文件
+ */
+gulp.task('clean_out_lib_unMinJS', function (cb) {
+  return del([
+    outDir + '/lib/**/*.js',
+    '!'+outDir + '/lib/**/*.min.js'
+  ], cb);
+});
+/**
+ * 清空 out/lib 目录下压缩js文件
+ */
+gulp.task('clean_out_lib_minJS', function (cb) {
+  return del([
+    outDir + '/lib/**/*.min.js'
+  ], cb);
+});
+
+/**
+ * 清空 out/lib 目录下非压缩CSS文件
+ */
+gulp.task('clean_out_lib_unMinCSS', function (cb) {
+  return del([
+    outDir + '/lib/**/*.css',
+    '!'+outDir + '/lib/**/*.min.css'
+  ], cb);
+});
+/**
+ * 清空 out/lib 目录下压缩css文件
+ */
+gulp.task('clean_out_lib_minCSS', function (cb) {
+  return del([
+    outDir + '/lib/**/*.min.css'
+  ], cb);
+});
+
 gulp.task('clean_css', function (cb) {
   return del(files.css.dest, cb);
 });
@@ -96,14 +131,31 @@ gulp.task('clean_images', function (cb) {
   return del(files.images.dest, cb);
 });
 
-gulp.task('copy_lib', function () {
+gulp.task('copy_lib_all', function () {
   return gulp.src(files.lib.src)
     // `changed` 任务需要提前知道目标目录位置
     // 才能找出哪些文件是被修改过的
-    .pipe(gulpChanged(files.lib.dest))
+    //.pipe(gulpChanged(files.lib.dest))
     // 只有被更改过的文件才会通过这里
     .pipe(gulp.dest(files.lib.dest));
 });
+var cleanLibTask = [];
+if(FLAG_MIN_JS){
+  cleanLibTask.push('clean_out_lib_unMinJS');
+  if(FLAG_MIN_CSS){
+    cleanLibTask.push('clean_out_lib_unMinCSS');
+  }else{
+    cleanLibTask.push('clean_out_lib_minCSS');
+  }
+}else{
+  cleanLibTask.push('clean_out_lib_minJS');
+  if(FLAG_MIN_CSS){
+    cleanLibTask.push('clean_out_lib_unMinCSS');
+  }else{
+    cleanLibTask.push('clean_out_lib_minCSS');
+  }
+}
+gulp.task('copy_lib',  gulpSequence('copy_lib_all',cleanLibTask));
 
 gulp.task('copy_images', ['clean_images'], function () {
   return gulp.src(files.images.src)
