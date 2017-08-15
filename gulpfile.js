@@ -7,6 +7,7 @@ var gulpSequence = require('gulp-sequence');// gulp顺序执行任务
 var gulpUglify = require('gulp-uglify');//压缩js文件
 var gulpCleanCss = require('gulp-clean-css');//压缩css文件
 var gulpWatch = require('gulp-watch');
+var gulpReact = require('gulp-react');
 //var gulpMinifyCss = require('gulp-minify-css');//压缩css文件
 //var gulpBabel = require('gulp-babel');
 //var gulpLess = require('gulp-less');
@@ -138,6 +139,7 @@ gulp.task('copy_js', ['clean_js'], function () {
 gulp.task('copy_requireJS', function () {
   return gulp.src(files.requireJS.src)
     .pipe(gulpChanged(files.requireJS.dest))
+    .pipe(gulpUglify())//TODO:待优化，require.js无需再次压缩
     .pipe(gulp.dest(files.requireJS.dest));
 });
 
@@ -202,6 +204,7 @@ gulp.task('concat_html_business', function () {
 gulp.task('copy_js_business', function () {
   if(FLAG_MIN_JS){
     return gulp.src(files.business_js.src)
+      .pipe(gulpReact())
       .pipe(gulpUglify())
       .pipe(gulp.dest(files.business_js.dest));
   }else{
