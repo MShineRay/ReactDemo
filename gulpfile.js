@@ -60,6 +60,34 @@ var files = {
     dest: outDir
   }
 };
+/**
+ * TODO: lib下需特殊处理不能删除的css.min文件
+ * @type {Array}
+ */
+var clean_out_lib_minCSS_white = [
+
+];
+/**
+ * TODO: lib下需特殊处理不能删除的css文件
+ * @type {Array}
+ */
+var clean_out_lib_unMinCSS_white = [
+
+];
+/**
+ * TODO: lib下需特殊处理不能删除的JS文件
+ * @type {Array}
+ */
+var clean_out_lib_unMinJS_white = [
+
+];
+/**
+ * TODO: lib下需特殊处理不能删除的JS.min文件
+ * @type {Array}
+ */
+var clean_out_lib_minJS_white = [
+
+];
 
 /**
  * 清空 out目录下文件
@@ -90,7 +118,7 @@ gulp.task('clean_out_lib_unMinJS', function (cb) {
   return del([
     outDir + '/lib/**/*.js',
     '!'+outDir + '/lib/**/*.min.js'
-  ], cb);
+  ].concat(clean_out_lib_unMinJS_white), cb);
 });
 /**
  * 清空 out/lib 目录下压缩js文件
@@ -98,7 +126,7 @@ gulp.task('clean_out_lib_unMinJS', function (cb) {
 gulp.task('clean_out_lib_minJS', function (cb) {
   return del([
     outDir + '/lib/**/*.min.js'
-  ], cb);
+  ].concat(clean_out_lib_minJS_white), cb);
 });
 
 /**
@@ -108,7 +136,7 @@ gulp.task('clean_out_lib_unMinCSS', function (cb) {
   return del([
     outDir + '/lib/**/*.css',
     '!'+outDir + '/lib/**/*.min.css'
-  ], cb);
+  ].concat(clean_out_lib_unMinCSS_white), cb);
 });
 /**
  * 清空 out/lib 目录下压缩css文件
@@ -116,7 +144,7 @@ gulp.task('clean_out_lib_unMinCSS', function (cb) {
 gulp.task('clean_out_lib_minCSS', function (cb) {
   return del([
     outDir + '/lib/**/*.min.css'
-  ], cb);
+  ].concat(clean_out_lib_minCSS_white), cb);
 });
 
 gulp.task('clean_css', function (cb) {
@@ -135,10 +163,12 @@ gulp.task('copy_lib_all', function () {
   return gulp.src(files.lib.src)
     // `changed` 任务需要提前知道目标目录位置
     // 才能找出哪些文件是被修改过的
-    //.pipe(gulpChanged(files.lib.dest))
+    .pipe(gulpChanged(files.lib.dest))
     // 只有被更改过的文件才会通过这里
     .pipe(gulp.dest(files.lib.dest));
 });
+
+
 var cleanLibTask = [];
 if(FLAG_MIN_JS){
   cleanLibTask.push('clean_out_lib_unMinJS');
@@ -155,7 +185,8 @@ if(FLAG_MIN_JS){
     cleanLibTask.push('clean_out_lib_minCSS');
   }
 }
-gulp.task('copy_lib',  gulpSequence('copy_lib_all',cleanLibTask));
+gulp.task('copy_lib', gulpSequence('copy_lib_all',cleanLibTask));
+
 
 gulp.task('copy_images', ['clean_images'], function () {
   return gulp.src(files.images.src)
