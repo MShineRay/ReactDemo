@@ -1,0 +1,1 @@
+require(["xdf.reactBase"],function(e){console.log(2222222222)});

@@ -1,7 +1,7 @@
-define(function (require) {
-  var $ = require("jquery");
-  var Util = {};
-  var XdfConfig = require("xdf.config");
+define(["jquery", "xdf.config"], function ($, XdfConfig) {
+  var Util = {
+    $: $
+  };
   /**
    * 保留两位小数
    * 将浮点数四舍五入，取小数点后2位
@@ -166,7 +166,6 @@ define(function (require) {
     }
     return paramAry.join("&");
   };
-
 
   var Regex = {
     //数字

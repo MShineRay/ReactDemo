@@ -1,0 +1,1 @@
+define(function(t,c,n){var p="",o=window.location.hostname;return p="project.cn"==o?"http://projectapi.cn":"uproject.cn"==o?"http://uprojectapi.cn":"http://tprojectapi.cn",{apiUrl:p}});
