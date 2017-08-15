@@ -3,8 +3,8 @@
    * 默认应该维护lib对应的min文件
    */
   var requireConfigPath = {
-    "jquery": "../lib/jquery/v2.2.3/jquery-2.2.3.min",
-    "mustache": "../lib/mustache/v2.2.1/mustache.min",
+    "jquery": "../lib/jquery-3.2.1.min",
+    "mustache": "../lib/mustache.min",
     "xdf.config": "../js/xdf.config",
     "xdf.util": "../js/xdf.util",
     'jqueryForm':"../lib/jquery.form.min",
