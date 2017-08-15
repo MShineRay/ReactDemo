@@ -1,1 +1,1 @@
-define(function(e){e("jquery"),e("xdf.util"),e("mustache");return{}});
+define(["xdf.reactBase"],function(e){e.util.$,e.util,require("mustache");return{}});

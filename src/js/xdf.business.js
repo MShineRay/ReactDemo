@@ -3,9 +3,9 @@
  * 公共的请求接口
  * 公共的业务处理逻辑
  */
-define(function (require) {
-  var $ = require("jquery");
-  var XDFUtil = require("xdf.util");
+define(['xdf.reactBase'],function (XDFReactBase) {
+  var $ = XDFReactBase.util.$;
+  var XDFUtil = XDFReactBase.util;
   var Mustache = require('mustache');
   var EduAdmin = {};
 
