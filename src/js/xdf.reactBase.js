@@ -1,6 +1,6 @@
-define(["xdf.util",'react','reactDom'],function (util,React,ReactDOM) {
+define(["xdf.util",'react','reactDom'],function (Util,React,ReactDOM) {
   var framework = {
-    util:util,
+    Util:Util,
     ReactDOM:ReactDOM,
     React:React
   };

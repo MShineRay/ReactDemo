@@ -1,1 +1,1 @@
-define(["xdf.util","react","reactDom"],function(e,t,c){var a={util:e,ReactDOM:c,React:t};return console.log("111"),a});
+define(["xdf.util","react","reactDom"],function(e,t,c){var a={Util:e,ReactDOM:c,React:t};return console.log("111"),a});
