@@ -17,7 +17,7 @@ var gulpReact = require('gulp-react');
 // var gulpRevAppend = require('gulp-rev-append');
 //var vinylBuffer = require('vinyl-buffer');
 //var vinylSourceStream = require('vinyl-source-stream');
-
+var ComVer = "20170816";
 var Ver = new Date().getTime();
 var outDir = './out';//默认：输出目录
 var FLAG_MIN_JS = true;//开关：是否压缩JS
@@ -224,39 +224,39 @@ gulp.task('copy_indexHtml', function () {
     .pipe(gulp.dest(files.indexHtml.dest));
 });
 
-gulp.task('concat_html_business_css', function () {
-  return gulp.src(files.business_html.src)
-    .pipe(gulpFileInclude({
-      prefix: '@@',
-      basepath: './src/_layout',
-      context: {
-        Title: "---",
-        CdnPrefix: ".",
-        BodyCss: "",
-        Text: "",
-        Link: "",
-        CSSVer: Ver
-      }
-    }))
-    .pipe(gulp.dest(files.business_html.dest));
-});
+//gulp.task('concat_html_business_css', function () {
+//  return gulp.src(files.business_html.src)
+//    .pipe(gulpFileInclude({
+//      prefix: '@@',
+//      basepath: './src/_layout',
+//      context: {
+//        Title: "---",
+//        CdnPrefix: ".",
+//        BodyCss: "",
+//        Text: "",
+//        Link: "",
+//        CSSVer: Ver
+//      }
+//    }))
+//    .pipe(gulp.dest(files.business_html.dest));
+//});
 
-gulp.task('concat_html_business_js', function () {
-  return gulp.src(files.business_html.src)
-    .pipe(gulpFileInclude({
-      prefix: '@@',
-      basepath: './src/_layout',
-      context: {
-        Title: "",
-        CdnPrefix: ".",
-        BodyCss: "",
-        Text: "",
-        Link: "",
-        JSVer: Ver
-      }
-    }))
-    .pipe(gulp.dest(files.business_html.dest));
-});
+//gulp.task('concat_html_business_js', function () {
+//  return gulp.src(files.business_html.src)
+//    .pipe(gulpFileInclude({
+//      prefix: '@@',
+//      basepath: './src/_layout',
+//      context: {
+//        Title: "",
+//        CdnPrefix: ".",
+//        BodyCss: "",
+//        Text: "",
+//        Link: "",
+//        JSVer: Ver
+//      }
+//    }))
+//    .pipe(gulp.dest(files.business_html.dest));
+//});
 
 gulp.task('concat_html_business', function () {
   return gulp.src(files.business_html.src)
@@ -269,7 +269,8 @@ gulp.task('concat_html_business', function () {
         BodyCss: "",
         Text: "",
         Link: "",
-        Ver: Ver
+        Ver: Ver,
+        ComVer:ComVer
       }
     }))
     .pipe(gulp.dest(files.business_html.dest));
